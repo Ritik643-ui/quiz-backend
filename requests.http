@@ -1,0 +1,87 @@
+###### Correct answer: score becomes 1
+##@baseUrl = http://localhost:8080/quiz-backend
+###POST {{baseUrl}}/api/answers
+###Content-Type: application/json
+###
+###{
+###  "questionId": 1,
+###  "selectedChoiceIndex": 0
+###}
+###
+###### Incorrect answer: score remains 1
+###POST {{baseUrl}}/api/answers
+###Content-Type: application/json
+###
+###{
+###  "questionId": 1,
+###  "selectedChoiceIndex": 1
+###}
+###
+###### Correct answer: score becomes 2
+###POST {{baseUrl}}/api/answers
+###Content-Type: application/json
+###
+###{
+###  "questionId": 2,
+###  "selectedChoiceIndex": 1
+###}
+###
+###### Restart the quiz
+###POST {{baseUrl}}/api/quiz/restart
+###Accept: application/json
+###
+###### Unknown question ID
+###POST {{baseUrl}}/api/answers
+###Content-Type: application/json
+###Accept: application/json
+###
+###{
+###  "questionId": 999,
+###  "selectedChoiceIndex": 0
+###}
+###
+###
+##
+###
+###POST {{baseUrl}}/api/answers
+###Content-Type: application/json
+###Accept: application/json
+###
+###{
+###  "questionId": 1,
+###  "selectedChoiceIndex": 99
+###}
+##
+##GET http://localhost:8080/quiz-backend/api/questions/random
+#
+#POST http://localhost:8080/quiz-backend/api/answers
+#Content-Type: application/json
+#
+#{
+#  "questionId": 1,
+#  "selectedChoiceIndex": 0
+#}
+#
+#POST http://localhost:8080/quiz-backend/api/answers
+#Content-Type: application/json
+#
+#{
+#  "questionId": 999,
+#  "selectedChoiceIndex": 0
+#}
+#GET http://localhost:8080/quiz-backend/api/questions/random
+
+POST http://localhost:8080/quiz-backend/api/answers
+Content-Type: application/json
+
+{
+  "questionId": 2,
+  "selectedChoiceIndex": 1
+}
+
+
+###
+# curl -i http://localhost:8080/quiz-backend/api/questions/random
+GET http://localhost:8080/quiz-backend/api/questions/random
+
+###
